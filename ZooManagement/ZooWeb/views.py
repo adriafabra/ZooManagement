@@ -1,10 +1,13 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.views import generic
+from django.contrib.auth.forms import UserCreationForm
+from django.urls import reverse_lazy
 
 # Create your views here.
 
-def main_url(req):
-    return HttpResponse("Welcome to Zoo Management")
 
-def zooweb_url(req):
-    return HttpResponse("Here you can manage the zoo")
+class SignUpView(generic.CreateView):
+    form_class = UserCreationForm
+    success_url = reverse_lazy('login')
+    template_name = 'registration/signup.html'

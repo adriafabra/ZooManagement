@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+  <h2>Welcome to ZooWeb</h2>
+  <h3>Hi {{ user.username }}! Here you can see all the database</h3>
+  
+  <p><a href="{% url 'logout' %}">Log Out</a></p>
+{% else %}
+  <h2>Welcome to ZooWeb</h2>
+  <a href="{% url 'login' %}">Log In</a>
+  <br><br>
+  <a href="{% url 'signup' %}">Sign Up</a>
+{% endif %}
+{% endblock %}
