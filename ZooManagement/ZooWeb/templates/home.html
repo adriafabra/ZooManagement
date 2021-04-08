@@ -6,6 +6,35 @@
 {% if user.is_authenticated %}
   <h2>Welcome to ZooWeb</h2>
   <h3>Hi {{ user.username }}! Here you can see all the database</h3>
+
+  <h4>Animals (Species - Classes - Weight - Height - Life Expectancy - Alimentation - Sector)</h4>
+  <OL>
+  {% for a in Animals %}
+      {{ a.species }} - {{ a.classes }} - {{ a.weight_in_kilograms }} kg - {{ a.height_in_centimeters }} cm 
+      - {{ a.life_expectancy }} years - {{ a.alimentation }} - {{ a.sector }} <br>
+  {% endfor %}
+  </OL>
+
+  <h4>Workers (NSS - Name - Age - Takes care of Animal and/or Maintance Sector)</h4>
+  <OL>
+  {% for w in Workers %}
+      {{ w.NSS }} - {{ w.name }} {{ w.surname }} - {{ w.age }} years -
+      {% for wo in w.animals.all %}
+          {{ wo.species }} -
+      {% endfor %}
+      {% for wor in w.sectors.all %}
+          {{ wor.name }}
+      {% endfor %}
+      <br>
+  {% endfor %}
+  </OL>
+
+  <h4>Sectors (Name - Area)</h4>
+  <OL>
+  {% for s in Sectors %}
+      {{ s.name }} - {{ s.area_in_square_meters }} m2 <br>
+  {% endfor %}
+  </OL>
   
   <p><a href="{% url 'logout' %}">Log Out</a></p>
 {% else %}

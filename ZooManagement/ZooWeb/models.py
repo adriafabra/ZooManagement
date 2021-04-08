@@ -4,17 +4,17 @@ from django.db import models
 
 
 class Animal(models.Model):
-    TAXONOMY_LIST = (('M', 'Mammal'), ('R', 'Reptile'), ('B', 'Bird'), ('A', 'Amphibian'))
-    ALIMENTATION_LIST = (('C', 'Carnivorous'), ('H', 'Herbivorous'), ('O', 'Omnivorous'),
-                        ('F', 'Fruitarian'), ('I', 'Filter'), ('S', 'Scavenger'), 
-                        ('I', 'Insectivorous'), ('P', 'Piscivorous'))
+    TAXONOMY_LIST = (('Mammal', 'Mammal'), ('Reptile', 'Reptile'), ('Bird', 'Bird'), ('Amphibian', 'Amphibian'))
+    ALIMENTATION_LIST = (('Carnivorous', 'Carnivorous'), ('Herbivorous', 'Herbivorous'), ('Omnivorous', 'Omnivorous'),
+                        ('Fruitarian', 'Fruitarian'), ('Filter', 'Filter'), ('Scavenger', 'Scavenger'), 
+                        ('Insectivorous', 'Insectivorous'), ('Piscivorous', 'Piscivorous'))
 
     species = models.CharField(max_length=20, unique=True)
-    classes = models.CharField(max_length=1, choices=TAXONOMY_LIST)
+    classes = models.CharField(max_length=20, choices=TAXONOMY_LIST)
     weight_in_kilograms = models.IntegerField()
     height_in_centimeters = models.IntegerField()
     life_expectancy = models.IntegerField()
-    alimentation = models.CharField(max_length=2, choices=ALIMENTATION_LIST)
+    alimentation = models.CharField(max_length=20, choices=ALIMENTATION_LIST)
     sector = models.ForeignKey('Sector', on_delete=models.CASCADE)
 
     def __str__(self):

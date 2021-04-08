@@ -3,8 +3,18 @@ from django.http import HttpResponse
 from django.views import generic
 from django.contrib.auth.forms import UserCreationForm
 from django.urls import reverse_lazy
+from .models import *
 
 # Create your views here.
+
+def homeView(req):
+    animals = Animal.objects.order_by("species")
+    workers = Worker.objects.order_by("name")
+    sectors = Sector.objects.order_by("name")
+
+    dic = {'Animals': animals, 'Workers': workers, 'Sectors': sectors}
+
+    return render(req, 'home.html', dic)
 
 
 class SignUpView(generic.CreateView):
