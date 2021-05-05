@@ -4,6 +4,7 @@ from django.views import generic
 from django.contrib.auth.forms import UserCreationForm
 from django.urls import reverse_lazy
 from .models import *
+from ZooWeb.forms import VisitorsForm
 
 # Create your views here.
 
@@ -22,3 +23,8 @@ class SignUpView(generic.CreateView):
     form_class = UserCreationForm
     success_url = reverse_lazy('login')
     template_name = 'registration/signup.html'
+
+class VisitorsCreate(generic.CreateView):
+    model = GroupOfVisitor
+    template_name = 'form.html'
+    form_class = VisitorsForm

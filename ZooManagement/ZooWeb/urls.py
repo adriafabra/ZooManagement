@@ -2,7 +2,8 @@ from django.contrib import admin
 from django.urls import path, include
 from . import views
 from django.views.generic.base import TemplateView
-from .views import SignUpView
+from .views import *
+
 
 urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),

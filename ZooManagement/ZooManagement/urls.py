@@ -17,10 +17,11 @@ from django.contrib import admin
 from django.urls import path, include
 from ZooWeb import views
 from django.views.generic.base import TemplateView
+from django.views.generic import RedirectView
 
 
 urlpatterns = [
-    path('', TemplateView.as_view(template_name='welcome.html')),
+    path('',  RedirectView.as_view(pattern_name='home')),
     path('zooweb/', include('ZooWeb.urls')),
     path('admin/', admin.site.urls),
 ]

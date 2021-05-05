@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls.base import reverse
 
 # Create your models here.
 
@@ -56,6 +57,9 @@ class GroupOfVisitor(models.Model):
 
     def __str__(self):
         return self.representant
+
+    def get_absolute_url(self):
+        return reverse('home')
 
 class GuidedTour(models.Model):
     worker = models.ForeignKey('Worker', on_delete=models.CASCADE)
