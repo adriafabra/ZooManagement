@@ -44,10 +44,15 @@ class Sector(models.Model):
         return self.name
 
 class GroupOfVisitor(models.Model):
+    HOUR_LIST = (('10:00', '10:00'), ('13:00', '13:00'), ('16:00', '16:00'), ('19:00', '19:00'))
     representant = models.CharField(max_length=20)
     number_of_visitors = models.IntegerField()
     sector = models.ManyToManyField('Sector')
     date = models.DateField()
+    hour = models.CharField(max_length=20, choices=HOUR_LIST)
+
+    class Meta:
+        unique_together = ('date', 'hour')
 
     def __str__(self):
         return self.representant

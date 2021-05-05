@@ -11,8 +11,9 @@ def homeView(req):
     animals = Animal.objects.order_by("species")
     workers = Worker.objects.order_by("name")
     sectors = Sector.objects.order_by("name")
+    group_of_visitor = GroupOfVisitor.objects.order_by("date")
 
-    dic = {'Animals': animals, 'Workers': workers, 'Sectors': sectors}
+    dic = {'Animals': animals, 'Workers': workers, 'Sectors': sectors, 'GroupOfVisitor': group_of_visitor}
 
     return render(req, 'home.html', dic)
 

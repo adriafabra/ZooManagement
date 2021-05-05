@@ -5,7 +5,19 @@
 {% block content %}
 {% if user.is_authenticated %}
   <h2>Welcome to ZooWeb</h2>
-  <h3>Hi {{ user.username }}! Here you can see all the database</h3>
+  <h3>Hi {{ user.username }}! Here you can see all the booked tours</h3>
+  <OL>
+  {% for g in GroupOfVisitor %}
+      {{ g.representant }} - {{ g.number_of_visitors }} - 
+      {% for sec in g.sector.all %}
+        {{ sec.name }},
+      {% endfor %}
+      - {{ g.date }} - {{ g.hour }}
+      <br>
+  {% endfor %}
+  </OL>  
+
+  <h3>Here you can see all the database</h3>
 
   <h4>Animals (Species - Classes - Weight - Height - Life Expectancy - Alimentation - Sector)</h4>
   <OL>
