@@ -46,6 +46,8 @@ class Sector(models.Model):
 class GroupOfVisitor(models.Model):
     representant = models.CharField(max_length=20)
     number_of_visitors = models.IntegerField()
+    sector = models.ManyToManyField('Sector')
+    date = models.DateField()
 
     def __str__(self):
         return self.representant
@@ -53,9 +55,7 @@ class GroupOfVisitor(models.Model):
 class GuidedTour(models.Model):
     worker = models.ForeignKey('Worker', on_delete=models.CASCADE)
     group_of_visitor = models.ForeignKey('GroupOfVisitor', on_delete=models.CASCADE)
-    sector = models.ManyToManyField('Sector')
-    date = models.DateField()
-
+    
     def __str__(self):
-        return "%s %s" % (self.group_of_visitor.representant, self.date)
+        return "%s - %s %s" % (self.group_of_visitor.representant, self.worker.name, self.worker.surname)
 
