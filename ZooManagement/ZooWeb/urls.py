@@ -16,4 +16,10 @@ urlpatterns = [
     path('groupofvisitors/<int:pk>',
         VisitorsDetail.as_view(),
         name='visitors_detail'),
+
+    path('groupofvisitors/<int:pk>/edit',
+        VisitorsUpdate.as_view(
+            model=GroupOfVisitor,
+            form_class=VisitorsForm),
+        name='visitors_edit'),
 ]
