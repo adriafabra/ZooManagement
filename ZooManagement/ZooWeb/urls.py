@@ -12,4 +12,8 @@ urlpatterns = [
     path('groupofvisitors/create', 
         VisitorsCreate.as_view(),
         name='visitors_create'),
+    
+    path('groupofvisitors/<int:pk>',
+        VisitorsDetail.as_view(),
+        name='visitors_detail'),
 ]

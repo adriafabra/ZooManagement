@@ -4,4 +4,4 @@ from ZooWeb.models import GroupOfVisitor
 class VisitorsForm(ModelForm):
     class Meta:
         model = GroupOfVisitor
-        exclude = ()
+        exclude = ('user',)

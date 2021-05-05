@@ -1,0 +1,14 @@
+<h2>Book Information: </h2>
+<p>
+    Booked by: {{ user.username }} <br/><br/>
+    Date: {{ groupofvisitor.date }} <br/>
+    Hour: {{ groupofvisitor.hour }} <br/><br/>
+
+    Number of visitors: {{ groupofvisitor.number_of_visitors }} <br/>
+    Sectors to visit: {% for g in groupofvisitor.sector.all %}
+                        {{ g.name }} -
+                      {% endfor %}
+    <br/>
+    
+    <p><a href="{% url 'home' %}">Go back</a></p>
+</p>

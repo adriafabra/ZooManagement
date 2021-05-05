@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls.base import reverse
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -46,7 +47,7 @@ class Sector(models.Model):
 
 class GroupOfVisitor(models.Model):
     HOUR_LIST = (('10:00', '10:00'), ('13:00', '13:00'), ('16:00', '16:00'), ('19:00', '19:00'))
-    representant = models.CharField(max_length=20)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     number_of_visitors = models.IntegerField()
     sector = models.ManyToManyField('Sector')
     date = models.DateField()
@@ -56,15 +57,15 @@ class GroupOfVisitor(models.Model):
         unique_together = ('date', 'hour')
 
     def __str__(self):
-        return self.representant
+        return self.user.username
 
     def get_absolute_url(self):
-        return reverse('home')
+        return reverse('visitors_detail', kwargs={'pk': self.pk})
 
 class GuidedTour(models.Model):
     worker = models.ForeignKey('Worker', on_delete=models.CASCADE)
     group_of_visitor = models.ForeignKey('GroupOfVisitor', on_delete=models.CASCADE)
     
     def __str__(self):
-        return "%s - %s %s" % (self.group_of_visitor.representant, self.worker.name, self.worker.surname)
+        return "%s - %s %s" % (self.group_of_visitor.user, self.worker.name, self.worker.surname)
 
