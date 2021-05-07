@@ -22,4 +22,12 @@ urlpatterns = [
             model=GroupOfVisitor,
             form_class=VisitorsForm),
         name='visitors_edit'),
+
+    path('groupofvisitors/<int:pk>/delete', 
+        VisitorsDelete.as_view(
+            model = GroupOfVisitor,
+            template_name = 'confirm_delete.html',
+        ),
+        name='visitors_delete'),
+        
 ]

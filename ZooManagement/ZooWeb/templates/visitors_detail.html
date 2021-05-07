@@ -1,4 +1,4 @@
-<h2>Book Information: </h2>
+<h2>Booking Information: </h2>
 <p>
     Booked by: {{ user.username }} <br/><br/>
     Date: {{ groupofvisitor.date }} <br/>
@@ -10,7 +10,8 @@
                       {% endfor %}
     <br/>
     
-    <p><a href="{% url 'visitors_edit' groupofvisitor.id %}">Edit book</a></p>
-
+    <p><a href="{% url 'visitors_edit' groupofvisitor.id %}">Edit booking</a></p>
+    <p><a href="{% url 'visitors_delete' groupofvisitor.id %}">Delete booking</a></p>
     <p><a href="{% url 'home' %}">Go back</a></p>
+
 </p>

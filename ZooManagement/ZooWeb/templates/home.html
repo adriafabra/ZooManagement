@@ -10,7 +10,7 @@
     {% empty %}<li>Sorry, no booked tours yet.</li>
     {% endfor %}
   </ul>
-
+  
   <p><a href="{% url 'visitors_create' %}">Book a tour</a></p>
 
   <p><a href="{% url 'logout' %}">Log Out</a></p>
@@ -56,3 +56,12 @@
 
 
 {% endblock %}
+
+
+
+
+<script>
+function go_back() {
+  location.href="{% url 'home' %}"
+}
+<script/>
