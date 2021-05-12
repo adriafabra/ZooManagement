@@ -24,4 +24,5 @@ urlpatterns = [
     path('',  RedirectView.as_view(pattern_name='home')),
     path('zooweb/', include('ZooWeb.urls')),
     path('admin/', admin.site.urls),
+    path('accounts/', include('django.contrib.auth.urls')),
 ]

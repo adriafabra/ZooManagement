@@ -64,7 +64,3 @@ class VisitorsDelete(LoginRequiredMixin, CheckIsOwnerMixin, generic.DeleteView):
 class VisitorsDetail(LoginRequiredMixin, CheckIsOwnerMixin, generic.DetailView):
     model = GroupOfVisitor
     template_name = 'visitors_detail.html'
-
-    #def get_context_data(self, **kwargs):
-     #   context = super(VisitorsDetail, self).get_context_data(**kwargs)
-      #  return context

@@ -45,6 +45,8 @@ class Sector(models.Model):
     def __str__(self):
         return self.name
 
+    
+
 class GroupOfVisitor(models.Model):
     HOUR_LIST = (('10:00', '10:00'), ('13:00', '13:00'), ('16:00', '16:00'), ('19:00', '19:00'))
     user = models.ForeignKey(User, on_delete=models.CASCADE)
