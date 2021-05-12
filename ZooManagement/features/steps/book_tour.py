@@ -2,7 +2,7 @@ from functools import reduce
 from behave import *
 import operator
 from django.db.models import Q
-from ZooWeb.models import GroupOfVisitor
+from ZooWeb.models import GroupOfVisitor, Sector
 
 use_step_matcher("parse")
 
@@ -12,13 +12,15 @@ def step_impl(context):
         context.browser.visit(context.get_url('visitors_create'))
         if context.browser.url == context.get_url('visitors_create'):
             form = context.browser.find_by_tag('form').first
-
+            
             values = {}
             for heading in row.headings:
-                values[heading] = row[heading]
+                if heading == 'sector':
+                    values[heading] = str(Sector.objects.get(name=row[heading]).id)
+                else:
+                    values[heading] = row[heading]
                 
             context.browser.fill_form(values)
-            
             form.find_by_value('Submit').first.click()
 
 
