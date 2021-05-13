@@ -22,10 +22,10 @@ Feature: Edit Booking
 
     Scenario: Try to edit restaurant but not logged in
         Given I'm not logged in
-        When I try to edit a booking
+        When I try to edit a booking with date "2022-06-28" and hour "13:00"
         Then I'm redirected to the login form
 
     Scenario: Try to edit restaurant but not the owner
         Given I login as user "user2" with password "password"
-        When I try to edit a booking
+        When I try to edit a booking with date "2022-06-28" and hour "13:00"
         Then Server responds with page containing "403 Forbidden"

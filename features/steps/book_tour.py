@@ -3,6 +3,8 @@ from behave import *
 import operator
 from django.db.models import Q
 from ZooWeb.models import GroupOfVisitor, Sector
+from django.contrib.auth.models import User
+
 
 use_step_matcher("parse")
 
@@ -26,8 +28,14 @@ def step_impl(context):
 
 @then(u'I\'m viewing the details page for booking by "{username}"')
 def step_impl(context, username):
-    q_list = [Q((attribute, context.table.rows[0][attribute])) for attribute in context.table.headings]
-    from django.contrib.auth.models import User
+    q_list = []
+
+    for attribute in context.table.headings:
+        if attribute == 'sector':
+            q_list.append(Q((attribute, str(Sector.objects.get(name=context.table.rows[0][attribute]).id))))
+        else:
+            q_list.append(Q((attribute, context.table.rows[0][attribute])))
+    
     q_list.append(Q(('user', User.objects.get(username=username))))
     
     visit = GroupOfVisitor.objects.filter(reduce(operator.and_, q_list)).get()

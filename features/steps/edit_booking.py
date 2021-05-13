@@ -23,16 +23,24 @@ def step_impl(context, username):
         visit.sector.add(sector)
 
 
-@when(u'I edit the booking with date "2022-06-28" and hour "13:00"')
-def step_impl(context):
-    raise NotImplementedError(u'STEP: When I edit the booking with date "2022-06-28" and hour "13:00"')
+@when(u'I edit the booking with date "{date}" and hour "{hour}"')
+def step_impl(context, date, hour):
+    visit = GroupOfVisitor.objects.get(date=date, hour=hour)
+    context.browser.visit(context.get_url('visitors_edit', visit.pk))
+
+    if context.browser.url == context.get_url('visitors_edit', visit.pk) and context.browser.find_by_tag('form'):
+        form = context.browser.find_by_tag('form').first
+        for heading in context.table.headings:
+            context.browser.fill(heading, context.table[0][heading])
+        form.find_by_value('Submit').first.click()
 
 
-@when(u'I try to edit a booking')
-def step_impl(context):
-    raise NotImplementedError(u'STEP: When I try to edit a booking')
+@when(u'I try to edit a booking with date "{date}" and hour "{hour}"')
+def step_impl(context, date, hour):
+    visit = GroupOfVisitor.objects.get(date=date, hour=hour)
+    context.browser.visit(context.get_url('visitors_edit', visit.pk))
 
 
-@then(u'Server responds with page containing "403 Forbidden"')
-def step_impl(context):
-    raise NotImplementedError(u'STEP: Then Server responds with page containing "403 Forbidden"')
+@then(u'Server responds with page containing "{message}"')
+def step_impl(context, message):
+    assert context.browser.is_text_present(message)
