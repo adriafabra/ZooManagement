@@ -1,4 +1,4 @@
-{% block content %}
+<title>{% block title %}ZooWeb - Home{% endblock %}</title>
 {% if user.is_authenticated %}
   <h2>Welcome to ZooWeb</h2>
   <h3>Hi {{ user.username }}! Here you can see your booked tours</h3>
@@ -52,16 +52,3 @@
     <br>
 {% endfor %}
 </OL>
-
-
-
-{% endblock %}
-
-
-
-
-<script>
-function go_back() {
-  location.href="{% url 'home' %}"
-}
-<script/>

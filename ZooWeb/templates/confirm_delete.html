@@ -1,3 +1,5 @@
+<title>{% block title %}ZooWeb - Confirm Delete{% endblock %}</title>
+
 <form method="post">{% csrf_token %}
     <p>Are you sure you want to delete the booking for "{{ groupofvisitor.date }} at {{ groupofvisitor.hour }}"?</p>
     <input type="submit" value="Confirm">
