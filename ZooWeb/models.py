@@ -1,6 +1,7 @@
 from django.db import models
 from django.urls.base import reverse
 from django.contrib.auth.models import User
+from django.core.validators import MinValueValidator,  MaxValueValidator
 
 # Create your models here.
 
@@ -54,6 +55,10 @@ class GroupOfVisitor(models.Model):
     sector = models.ManyToManyField('Sector')
     date = models.DateField()
     hour = models.CharField(max_length=20, choices=HOUR_LIST)
+    user_city = models.CharField(max_length=120)
+    user_region = models.CharField(max_length=120)
+    user_country = models.CharField(max_length=120)
+    user_phone = models.IntegerField(validators=[MinValueValidator(600000000),MaxValueValidator(799999999)])
 
     class Meta:
         unique_together = ('date', 'hour')

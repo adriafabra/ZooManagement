@@ -7,17 +7,17 @@ Feature: Edit Booking
         Given Exists a user "user1" with password "password"
         And Exists a user "user2" with password "password"
         And Exists booking registered by "user1"
-            | number_of_visitors | sector     | date       | hour  |
-            | 23                 | Mountain   | 2022-06-28 | 13:00 |
+            | number_of_visitors | sector     | date       | hour  | user_city | user_region | user_country | user_phone |
+            | 23                 | Mountain   | 2022-06-28 | 13:00 | Lleida    | Catalonia   | Spain        | 621544896  |
 
-    Scenario: Edit owned booking number_of_visitors
+    Scenario: Edit owned booking 
         Given I login as user "user1" with password "password"
         When I edit the booking with date "2022-06-28" and hour "13:00"
             | number_of_visitors  |
             | 34                  |
         Then I'm viewing the details page for booking by "user1"
-            | number_of_visitors | sector     | date       | hour  |
-            | 34                 | Mountain   | 2022-06-28 | 13:00 |
+            | number_of_visitors | sector     | date       | hour  | user_city | user_region | user_country | user_phone |
+            | 34                 | Mountain   | 2022-06-28 | 13:00 | Lleida    | Catalonia   | Spain        | 621544896  |
         And There are 1 bookings
 
     Scenario: Try to edit a booking but not logged in

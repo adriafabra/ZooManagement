@@ -8,6 +8,13 @@
     Sectors to visit: {% for g in groupofvisitor.sector.all %}
                         {{ g.name }} -
                       {% endfor %}
+
+    <br/><br/>
+    <h3>Representant Information: </h3>
+    City: {{ groupofvisitor.user_city }} <br/>
+    Region: {{ groupofvisitor.user_region }} <br/>
+    Country: {{ groupofvisitor.user_country }} <br/>
+    Phone: {{ groupofvisitor.user_phone }} <br/>
     <br/>
     
     <p><a href="{% url 'visitors_edit' groupofvisitor.id %}" value="Edit">Edit booking</a></p>

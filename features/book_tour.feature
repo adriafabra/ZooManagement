@@ -9,11 +9,11 @@ Feature: Book Tour
     Scenario: Register a booking
         Given I login as user "user" with password "password"
         When I book a tour
-            | number_of_visitors | sector     | date       | hour  |
-            | 12                 | Freshwater | 2022-05-28 | 10:00 |
+            | number_of_visitors | sector     | date       | hour  | user_city | user_region | user_country | user_phone |
+            | 12                 | Freshwater | 2022-05-28 | 10:00 | Lleida    | Catalonia   | Spain        | 621544896  |
         Then I'm viewing the details page for booking by "user"
-            | number_of_visitors | sector     | date       | hour  |
-            | 12                 | Freshwater | 2022-05-28 | 10:00 |
+            | number_of_visitors | sector     | date       | hour  | user_city | user_region | user_country | user_phone |
+            | 12                 | Freshwater | 2022-05-28 | 10:00 | Lleida    | Catalonia   | Spain        | 621544896  |
         And There are 1 bookings
 
     Scenario: Try to book a visit but not logged in
