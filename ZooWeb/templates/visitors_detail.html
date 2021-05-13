@@ -10,8 +10,8 @@
                       {% endfor %}
     <br/>
     
-    <p><a href="{% url 'visitors_edit' groupofvisitor.id %}">Edit booking</a></p>
-    <p><a href="{% url 'visitors_delete' groupofvisitor.id %}">Delete booking</a></p>
+    <p><a href="{% url 'visitors_edit' groupofvisitor.id %}" value="Edit">Edit booking</a></p>
+    <p><a href="{% url 'visitors_delete' groupofvisitor.id %}" value="Delete">Delete booking</a></p>
     <p><a href="{% url 'home' %}">Go back</a></p>
 
 </p>
