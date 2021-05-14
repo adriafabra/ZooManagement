@@ -64,7 +64,7 @@ class GroupOfVisitor(models.Model):
         unique_together = ('date', 'hour')
 
     def __str__(self):
-        return self.user.username
+        return "%s - %s %s" % (self.user.username, self.date, self.hour)
 
     def get_absolute_url(self):
         return reverse('visitors_detail', kwargs={'pk': self.pk})

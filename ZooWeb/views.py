@@ -13,7 +13,7 @@ from django.shortcuts import get_object_or_404
 # Create your views here.
 
 def homeView(req):
-    animals = Animal.objects.order_by("species")
+    animals = Animal.objects.order_by("classes")
     workers = Worker.objects.order_by("name")
     sectors = Sector.objects.order_by("name")
     all_visitors = GroupOfVisitor.objects.order_by("date")
