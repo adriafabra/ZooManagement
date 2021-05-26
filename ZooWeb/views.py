@@ -49,8 +49,7 @@ class VisitorsCreate(LoginRequiredMixin, generic.CreateView):
     model = GroupOfVisitor
     template_name = 'form.html'
     form_class = VisitorsForm
-
-    #Per crear el tour amb el current
+    
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super(VisitorsCreate, self).form_valid(form)
